@@ -2,9 +2,7 @@
 
 > Yes, I stole the repo name from [docker/awesome-compose](https://github.com/docker/awesome-compose). I am not sorry. :smile:
 
-## Getting started
-
-### Prerequisites
+## Prerequisites
 
 - Make sure that you have Docker and Docker Compose installed
   - Windows or macOS:
@@ -13,7 +11,8 @@
     [Docker Compose](https://github.com/docker/compose)
 - Clone this repository.
 
-### Running a Utility
+
+## Running a Utility
 
 The root directory of each utility contains the `compose.yaml` which
 describes the configuration of service components. All utilities can be run in
@@ -30,3 +29,9 @@ To stop and remove all containers of the sample application run:
 ```console
 docker compose down
 ```
+
+
+## References
+
+1. [Awesome Compose](https://github.com/docker/awesome-compose)
+2. [Useful Docker Compose](https://github.com/RajawatBanna/useful-docker-compose)
