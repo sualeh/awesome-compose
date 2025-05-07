@@ -1,0 +1,84 @@
+{
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.wordWrap": "bounded"
+  },
+  "editor.foldingImportsByDefault": true,
+  "window.zoomLevel": 1.2,
+  "editor.minimap.enabled": false,
+  "editor.overviewRulerBorder": false,
+  "editor.tabSize": 2,
+  "editor.wrappingIndent": "indent",
+  "files.defaultLanguage": "markdown",
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "foam.edit.linkReferenceDefinitions": "withoutExtensions",
+  "foam.files.ignore": [
+    "README.md",
+    "Commonplace/*",
+    "Commonplace/**/*",
+    "Diary/*",
+    "Diary/**/*"
+  ],
+  "foam.openDailyNote.directory": "journal",
+  "foam.openDailyNote.titleFormat": "fullDate",
+  "git.autofetch": true,
+  "git.enableCommitSigning": false,
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "sync",
+  "markdown.preview.breaks": true,
+  "pasteImage.path": "${projectRoot}/image",
+  "pasteImage.showFilePathConfirmInputBox": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": {
+    "*.md": "vscode.markdown.preview.editor"
+  },
+  "cSpell.customDictionaries": {
+    "project-words": {
+      "name": "vocabulary",
+      "path": "${workspaceRoot}/vocabulary.txt",
+      "description": "Words used in this knowledge base",
+      "addWords": true
+    },
+    "custom": true, // Enable the `custom` dictionary
+    "internal-terms": true // Disable the `internal-terms` dictionary
+  },
+  "scm.showActionButton": false,
+  "git.showActionButton": {
+    "commit": false,
+    "publish": false,
+    "sync": false
+  },
+  "git.followTagsWhenSync": true,
+  "git.rebaseWhenSync": true,
+  "todomd.activatePattern": "**/{todo,someday,todo.archive}.txt",
+  "todomd.autoArchiveTasks": true,
+  "todomd.closestDueDateIncludeWeekday": true,
+  "todomd.counterBadgeEnabled": true,
+  "todomd.defaultArchiveFile": "${workspaceFolder}/ToDo/todo.archive.txt",
+  "todomd.defaultFile": "${workspaceFolder}/ToDo/todo.txt",
+  "todomd.defaultSomedayFile": "${workspaceFolder}/ToDo/someday.txt",
+  "todomd.tabSize": 2,
+  "debug.javascript.resourceRequestOptions": {
+
+  },
+  "markdownlint.config": {
+    "blanks-around-fences": false,
+    "no-bare-urls": false,
+    "line-length": false,
+    "blanks-around-lists": false,
+    "blanks-around-headings": false,
+  },
+  "todomd.webview.fontSize": "14px",
+  "todomd.webview.lineHeight": 1.3,
+  "todomd.webview.padding": "8px",
+  "todomd.webview.showTaskDetails": false,
+  "todomd.webview.completedStrikeThrough": true
+}
