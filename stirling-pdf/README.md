@@ -5,14 +5,6 @@ Stirling PDF is a powerful, locally hosted PDF manipulation tool that helps you 
 For more details about features and capabilities, visit the [official Stirling PDF repository](https://github.com/Stirling-Tools/Stirling-PDF).
 
 
-## Why It's Useful
-
-- **Privacy-focused**: Process documents locally without uploading to third-party services
-- **Feature-rich**: Split, merge, compress, convert, and perform OCR on PDF files
-- **Free and open-source**: No licensing fees or restrictions
-- **Self-hosted**: Run it on your own infrastructure with complete control
-
-
 ## Usage
 
 Once you've started the container with Docker Compose, access Stirling PDF through your browser at: http://localhost:8080

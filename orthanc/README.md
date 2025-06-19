@@ -5,18 +5,11 @@ Orthanc is a lightweight, open-source DICOM server designed to facilitate medica
 The source code for the Orthanc Viewer is on [GitHub](https://github.com/npettiaux/orthanc-viewer). For broader context and documentation, the [official Orthanc website](https://www.orthanc-server.com/) is also a great resource.
 
 
-## Why It's Useful
-
-- **Medical imaging workflow**: Streamline DICOM file management and viewing for healthcare professionals
-- **Web-based viewer**: Access medical images through any modern browser without additional software
-- **Standards compliant**: Full DICOM support with REST API for integration with other systems
-- **Free and open-source**: No licensing fees with complete source code availability
-- **Self-hosted**: Deploy on your own infrastructure with complete control over sensitive medical data
-
-
 ## Usage
 
 Once you've started the container with Docker Compose, access Orthanc through your browser at: http://localhost:8042
+
+Then click on "Open Orthanc Explorer 2" to launch the web-based DICOM viewer. Upload the folder containting the DICOM files you want to view, and the viewer will render the images for you.
 
 The DICOM server also runs on port 4242 for receiving medical images from DICOM clients. The compose file uses the latest version with plugins for enhanced functionality.
 
