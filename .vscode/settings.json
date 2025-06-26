@@ -80,5 +80,8 @@
   "todomd.webview.lineHeight": 1.3,
   "todomd.webview.padding": "8px",
   "todomd.webview.showTaskDetails": false,
-  "todomd.webview.completedStrikeThrough": true
+  "todomd.webview.completedStrikeThrough": true,
+  "workbench.colorTheme": "GitHub Light",
+  "workbench.iconTheme": "material-icon-theme",
+  "git.autoStash": true
 }
