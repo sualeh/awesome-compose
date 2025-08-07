@@ -1,1 +1,3 @@
 .vscode/*.dict
+**/.paperless*
+**/.stirling*
