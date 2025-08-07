@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  paperless-ai:
+    image: clusterzx/paperless-ai
+    container_name: paperless-ai
+
+    ports:
+      - target: 3000     # Container port
+        published: 3000  # Host port
+        protocol: tcp
+        mode: host       # Use 'host' for direct binding; use 'ingress' for swarm
+
+    volumes:
+      - type: volume
+        source: paperless-ai_data
+        target: /app/data
+
+    restart: unless-stopped
+
+    networks:
+      - bridge
+
+volumes:
+  paperless-ai_data:
+
+networks:
+  bridge:
+    external: true
