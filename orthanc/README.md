@@ -7,7 +7,7 @@ The source code for the Orthanc Viewer is on [GitHub](https://github.com/npettia
 
 ## Usage
 
-Once you've started the container with Docker Compose, access Orthanc through your browser at: http://localhost:8042
+Once you've started the container with Docker Compose, access Orthanc through your browser at: http://localhost:8042 and login with the default username and password of "orthanc".
 
 Then click on "Open Orthanc Explorer 2" to launch the web-based DICOM viewer. Upload the folder containting the DICOM files you want to view, and the viewer will render the images for you.
 
