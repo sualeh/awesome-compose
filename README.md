@@ -30,6 +30,13 @@ To stop and remove all containers of the sample application run:
 docker compose down
 ```
 
+### Skills used by the AI agent
+
+Agent-triggered utilities live under `.github/skills/` and provide start/stop helper scripts the agent can call:
+
+- Stirling PDF: [.github/skills/stirling-pdf](.github/skills/stirling-pdf) — start with `./start-stirling-pdf.sh` or `./start-stirling-pdf.ps1`
+- Vert: [.github/skills/vert](.github/skills/vert) — start with `./start-vert.sh` or `./start-vert.ps1`
+
 
 ## References
 

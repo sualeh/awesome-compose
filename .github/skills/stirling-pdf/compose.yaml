@@ -1,9 +1,13 @@
 services:
   stirling-pdf:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest-fat
+    container_name: stirling-pdf
+    restart: unless-stopped
     ports:
       - target: 8080     # Container port
         published: 8080  # Host port
+        protocol: tcp
+        mode: host
     volumes:
       - type: bind
         source: ./.stirling-pdf/trainingData
