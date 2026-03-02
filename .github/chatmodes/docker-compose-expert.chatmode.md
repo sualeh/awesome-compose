@@ -50,7 +50,7 @@ Then inform: "Paperless-ngx is now running at http://localhost:8000"
 ```bash
 cd paperless && docker compose down
 cd ../stirling-pdf && docker compose down
-cd ../orthanc && docker compose down
+cd ../.github/skills/orthanc && docker compose down
 ```
 
 **Checking service status:**

@@ -2,13 +2,9 @@
 
 Orthanc is a lightweight, open-source DICOM server designed to facilitate medical imaging workflows. It includes a web-based DICOM viewer that allows users to visualize and interact with medical images directly through a browser. The viewer supports 2D and 3D rendering, including PET-CT fusion, and is built on top of Orthanc's REST API.
 
-The source code for the Orthanc Viewer is on [GitHub](https://github.com/npettiaux/orthanc-viewer). For broader context and documentation, the [official Orthanc website](https://www.orthanc-server.com/) is also a great resource.
+The source code for the Orthanc Viewer is on GitHub. For broader context and documentation, the official Orthanc website is also a great resource.
 
-
-## Usage
-
-For AI-agent usage, see the skill in [.github/skills/orthanc](../.github/skills/orthanc), which contains scripts and compose file.
-
+Orthanc is a lightweight, open-source DICOM server with a built-in web UI for browsing studies and an API for integrations. It exposes a DICOM endpoint on port 4242 and an admin UI on port 8042.
 
 ## References
 
@@ -16,5 +12,3 @@ For AI-agent usage, see the skill in [.github/skills/orthanc](../.github/skills/
 - [Orthanc Viewer GitHub Repository](https://github.com/npettiaux/orthanc-viewer)
 - [Orthanc Docker Hub](https://hub.docker.com/r/jodogne/orthanc-plugins)
 - [Orthanc Documentation](https://book.orthanc-server.com/)
-- [DICOM Standard](https://www.dicomstandard.org/)
-
