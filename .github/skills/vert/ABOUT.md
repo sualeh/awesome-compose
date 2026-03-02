@@ -4,12 +4,6 @@ VERT is a next-generation file converter that runs entirely in your browser usin
 
 For more details about features and capabilities, visit the [official VERT repository](https://github.com/vert-sh/vert).
 
-## Usage
-
-Once you've started the container with Docker Compose, access VERT through your browser at: http://localhost:8080
-
-The compose file configures VERT to run on port 8080 and sets up the necessary environment variables for proper operation.
-
 ## References
 
 - [VERT GitHub Repository](https://github.com/VERT-sh/VERT)
