@@ -2,7 +2,7 @@
 
 Skill location: .github/skills/pandoc.
 
-This skill uses Docker Compose to spin up a short-lived Pandoc container for each conversion request. Each invocation of the convert script starts a container, runs a single document conversion, and then removes the container. Converted files are written into the `output/` folder at the root of this repository.
+This skill uses Docker Compose to spin up a short-lived Pandoc container for each conversion request. Each invocation of the convert script starts a container, runs a single document conversion, and then removes the container. Converted files are written into the `_working/` folder at the root of this repository.
 
 ## Files
 
@@ -15,7 +15,7 @@ This skill uses Docker Compose to spin up a short-lived Pandoc container for eac
    - Bash: `./convert-pandoc.sh /absolute/path/to/file.md pdf`
    - PowerShell: `./convert-pandoc.ps1 -InputPath ./README.md -OutputFormat pdf`
 
-   The converted file will be written as `output/<basename>.<format>` at the repo root (for example, `output/README.pdf`).
+   The converted file will be written as `_working/<basename>.<format>` at the repo root (for example, `_working/README.pdf`).
 
    - On Linux, absolute paths anywhere on the host are supported via the `/` → `/host` bind mount.
    - On Windows, the PowerShell helper currently supports files that live under this repository root (paths inside the repo).
@@ -28,6 +28,6 @@ When the user asks to convert a local document with Pandoc (for example, "conver
 
 ## Notes
 
-- Output files are always written to the `output/` directory at the root of this project.
+- Output files are always written to the `_working/` directory at the root of this project.
 - The Bash helper attempts to handle both files inside the repository and arbitrary absolute paths on Linux hosts.
 - The PowerShell helper restricts input paths to locations under the repository root to match Docker Desktop volume semantics on Windows.

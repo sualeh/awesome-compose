@@ -22,7 +22,7 @@ OUTPUT_FORMAT="$2"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 COMPOSE_FILE="$SCRIPT_DIR/compose.yaml"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
-OUTPUT_DIR="$REPO_ROOT/output"
+OUTPUT_DIR="$REPO_ROOT/_working"
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -41,7 +41,7 @@ fi
 BASENAME="$(basename "$INPUT_ABS")"
 STEM="${BASENAME%.*}"
 OUTPUT_HOST="$OUTPUT_DIR/$STEM.$OUTPUT_FORMAT"
-OUTPUT_CONTAINER="/workspace/output/$STEM.$OUTPUT_FORMAT"
+OUTPUT_CONTAINER="/workspace/_working/$STEM.$OUTPUT_FORMAT"
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "docker is required but was not found in PATH" >&2

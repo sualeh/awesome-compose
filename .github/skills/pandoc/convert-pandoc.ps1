@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $composePath = Join-Path $scriptDir "compose.yaml"
 $repoRoot = (Resolve-Path (Join-Path $scriptDir "..\..\..")).Path
-$outputDir = Join-Path $repoRoot "output"
+$outputDir = Join-Path $repoRoot "_working"
 
 if (-not (Test-Path $outputDir)) {
   New-Item -ItemType Directory -Path $outputDir | Out-Null
@@ -33,7 +33,7 @@ $inputContainer = "/workspace/$relative" -replace '\\','/'
 
 $stem = [System.IO.Path]::GetFileNameWithoutExtension($inputFull)
 $outputHost = Join-Path $outputDir ("$stem.$OutputFormat")
-$outputContainer = "/workspace/output/$stem.$OutputFormat"
+$outputContainer = "/workspace/_working/$stem.$OutputFormat"
 
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
   Write-Error "docker is required but was not found in PATH"
