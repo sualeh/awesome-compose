@@ -41,13 +41,7 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 
 Push-Location $scriptDir
 try {
-  $running = & docker compose -f $composePath ps -q pandoc
-  if (-not $running) {
-    Write-Error "Pandoc container is not running. Start it with ./start-pandoc.ps1"
-    exit 1
-  }
-
-  $cmd = "docker compose -f `"$composePath`" exec -e INPUT=`"$inputContainer`" -e OUTPUT=`"$outputContainer`" pandoc sh -lc 'pandoc `"`$INPUT`" -o `"`$OUTPUT`"'"
+  $cmd = "docker compose -f `"$composePath`" run --rm pandoc `"$inputContainer`" -o `"$outputContainer`""
 
   if ($DryRun) {
     Write-Host "Dry run: $cmd"
@@ -55,7 +49,7 @@ try {
   }
 
   Write-Host "Converting '$inputFull' to format '$OutputFormat'..."
-  & docker compose -f $composePath exec -e INPUT=$inputContainer -e OUTPUT=$outputContainer pandoc sh -lc 'pandoc "$INPUT" -o "$OUTPUT"'
+  & docker compose -f $composePath run --rm pandoc $inputContainer -o $outputContainer
   Write-Host "Conversion complete. Output written to: $outputHost"
 }
 finally {

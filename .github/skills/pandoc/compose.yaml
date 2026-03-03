@@ -2,9 +2,8 @@ services:
   pandoc:
     image: pandoc/extra:latest
     container_name: pandoc
-    restart: unless-stopped
+    restart: no
     working_dir: /workspace
     volumes:
       - ../../..:/workspace
       - /:/host:ro
-    entrypoint: ["sh", "-c", "while true; do sleep 3600; done"]

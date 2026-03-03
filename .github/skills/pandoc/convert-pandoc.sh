@@ -50,12 +50,6 @@ fi
 
 cd "$SCRIPT_DIR"
 
-# Ensure the pandoc service is running
-if ! docker compose -f "$COMPOSE_FILE" ps -q pandoc | grep -q .; then
-  echo "Pandoc container is not running. Start it with ./start-pandoc.sh" >&2
-  exit 1
-fi
-
 # Map the host input path into the container
 case "$INPUT_ABS" in
   "$REPO_ROOT"/*)
@@ -66,11 +60,9 @@ case "$INPUT_ABS" in
     ;;
 esac
 
-CMD=(docker compose -f "$COMPOSE_FILE" exec
-  -e INPUT="$INPUT_CONTAINER"
-  -e OUTPUT="$OUTPUT_CONTAINER"
+CMD=(docker compose -f "$COMPOSE_FILE" run --rm
   pandoc
-  sh -lc 'pandoc "$INPUT" -o "$OUTPUT"')
+  "$INPUT_CONTAINER" -o "$OUTPUT_CONTAINER")
 
 if (( DRY_RUN )); then
   printf "Dry run: "
