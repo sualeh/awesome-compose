@@ -60,18 +60,23 @@ case "$INPUT_ABS" in
     ;;
 esac
 
-CMD=(docker compose -f "$COMPOSE_FILE" run --rm
+CMD_PULL=(docker compose -f "$COMPOSE_FILE" pull pandoc)
+CMD_RUN=(docker compose -f "$COMPOSE_FILE" run --rm
   pandoc
   "$INPUT_CONTAINER" -o "$OUTPUT_CONTAINER")
 
 if (( DRY_RUN )); then
   printf "Dry run: "
-  printf "%q " "${CMD[@]}"
+  printf "%q " "${CMD_PULL[@]}"
+  printf " && "
+  printf "%q " "${CMD_RUN[@]}"
   printf "\n"
   exit 0
 fi
 
 echo "Converting '$INPUT_ABS' to format '$OUTPUT_FORMAT'..."
-"${CMD[@]}"
+echo "Pulling latest pandoc image with Docker Compose..."
+"${CMD_PULL[@]}"
+"${CMD_RUN[@]}"
 
 echo "Conversion complete. Output written to: $OUTPUT_HOST"

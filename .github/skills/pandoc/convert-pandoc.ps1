@@ -41,13 +41,17 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 
 Push-Location $scriptDir
 try {
-  $cmd = "docker compose -f `"$composePath`" run --rm pandoc `"$inputContainer`" -o `"$outputContainer`""
+  $pullCmd = "docker compose -f `"$composePath`" pull pandoc"
+  $runCmd = "docker compose -f `"$composePath`" run --rm pandoc `"$inputContainer`" -o `"$outputContainer`""
 
   if ($DryRun) {
-    Write-Host "Dry run: $cmd"
+    Write-Host "Dry run: $pullCmd"
+    Write-Host "Dry run: $runCmd"
     return
   }
 
+  Write-Host "Pulling latest pandoc image with Docker Compose..."
+  & docker compose -f $composePath pull pandoc
   Write-Host "Converting '$inputFull' to format '$OutputFormat'..."
   & docker compose -f $composePath run --rm pandoc $inputContainer -o $outputContainer
   Write-Host "Conversion complete. Output written to: $outputHost"
