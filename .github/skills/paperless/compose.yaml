@@ -102,8 +102,8 @@ services:
     depends_on:
       - webserver
     ports:
-      - target: 3000     # Container port
-        published: 3000  # Host port
+      - target: 3000
+        published: 3000
         protocol: tcp
         mode: host
     volumes:
