@@ -81,7 +81,7 @@
   "todomd.webview.padding": "8px",
   "todomd.webview.showTaskDetails": false,
   "todomd.webview.completedStrikeThrough": true,
-  "workbench.colorTheme": "Default Light Modern",
+  "workbench.colorTheme": "Light Modern",
   "workbench.iconTheme": "material-icon-theme",
   "git.autoStash": true
 }

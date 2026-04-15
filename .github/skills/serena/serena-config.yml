@@ -1,0 +1,27 @@
+# Store Serena project data inside each repo
+project_serena_folder_location: "$projectDir/.serena"
+
+# Reasonable defaults for most coding sessions
+base_modes:
+  - interactive
+  - editing
+
+default_modes:
+  - interactive
+  - editing
+
+# Keep Java analysis on your installed JDK
+ls_specific_settings:
+  java:
+    use_system_java_home: true
+    jdtls_xmx: 4G
+    jdtls_xms: 256m
+    intellicode_xmx: 1G
+    intellicode_xms: 128m
+    gradle_version: "8.14.2"
+    vscode_java_version: "1.42.0-561"
+    intellicode_version: "1.2.30"
+
+# Optional: make indexing and temp data stay close to the project
+# (useful if you want everything local to the repo and predictable)
+tool_timeout_seconds: 120

@@ -37,6 +37,7 @@ Agent-triggered utilities live under `.github/skills/` and provide start/stop he
 - Stirling PDF: [.github/skills/stirling-pdf](.github/skills/stirling-pdf) — start with `./start-stirling-pdf.sh` or `./start-stirling-pdf.ps1`
 - Vert: [.github/skills/vert](.github/skills/vert) — start with `./start-vert.sh` or `./start-vert.ps1`
 - Orthanc: [.github/skills/orthanc](.github/skills/orthanc) — start with `./start-orthanc.sh` or `./start-orthanc.ps1`
+- Serena MCP: [.github/skills/serena](.github/skills/serena) — start with `./start-serena.sh` or `./start-serena.ps1`
 
 
 ## References

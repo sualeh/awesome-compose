@@ -1,0 +1,36 @@
+services:
+  serena:
+    image: ghcr.io/oraios/serena:latest
+    container_name: serena
+    environment:
+      TZ: America/New_York
+      SERENA_DOCKER: "1"
+      WORKSPACE_1: $WORKSPACE_1
+      WORKSPACE_2: $WORKSPACE_2
+    ports:
+      - target: 9121
+        published: 9121
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ./serena-config.yml
+        target: /workspaces/serena/serena_config.docker.yml
+      - type: bind
+        source: ${WORKSPACE_1}
+        target: /workspaces/workspace-1
+      - type: bind
+        source: ${WORKSPACE_2}
+        target: /workspaces/workspace-2
+    command:
+      - serena
+      - start-mcp-server
+      - --transport
+      - streamable-http
+      - --port
+      - "9121"
+      - --host
+      - 0.0.0.0
+      - --context
+      - claude-code
+    restart: unless-stopped
