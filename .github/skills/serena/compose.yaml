@@ -25,6 +25,8 @@ services:
     command:
       - serena
       - start-mcp-server
+      - --log-level
+      - DEBUG
       - --transport
       - streamable-http
       - --port
