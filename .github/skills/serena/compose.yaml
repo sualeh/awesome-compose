@@ -7,6 +7,7 @@ services:
       SERENA_DOCKER: "1"
       WORKSPACE_1: $WORKSPACE_1
       WORKSPACE_2: $WORKSPACE_2
+      WORKSPACE_3: $WORKSPACE_3
     ports:
       - target: 9121
         published: 9121
@@ -22,6 +23,9 @@ services:
       - type: bind
         source: ${WORKSPACE_2}
         target: /workspaces/workspace-2
+      - type: bind
+        source: ${WORKSPACE_3}
+        target: /workspaces/workspace-3
     command:
       - serena
       - start-mcp-server
