@@ -2,7 +2,7 @@
 
 Serena is a coding-focused assistant framework that can run as an MCP server and expose tools over HTTP. In this repository, it is packaged as a local Docker Compose utility so agents and humans can start and stop it consistently.
 
-This skill runs Serena with streamable HTTP transport on port 9121 and mounts local workspace paths from `serena.env` for project access.
+This skill runs Serena with streamable HTTP transport on port 9121 and mounts local workspace paths from `.env` for project access.
 
 ## References
 
