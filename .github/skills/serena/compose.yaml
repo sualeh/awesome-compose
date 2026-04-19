@@ -5,9 +5,7 @@ services:
     environment:
       TZ: America/New_York
       SERENA_DOCKER: "1"
-      WORKSPACE_1: $WORKSPACE_1
-      WORKSPACE_2: $WORKSPACE_2
-      WORKSPACE_3: $WORKSPACE_3
+      SERENA_PROJECT_PATH: ${SERENA_PROJECT_PATH}
     ports:
       - target: 9121
         published: 9121
@@ -18,14 +16,8 @@ services:
         source: ./serena-config.yml
         target: /workspaces/serena/serena_config.docker.yml
       - type: bind
-        source: ${WORKSPACE_1}
-        target: /workspaces/workspace-1
-      - type: bind
-        source: ${WORKSPACE_2}
-        target: /workspaces/workspace-2
-      - type: bind
-        source: ${WORKSPACE_3}
-        target: /workspaces/workspace-3
+        source: ${SERENA_PROJECT_PATH}
+        target: /workspaces/active-project
     command:
       - serena
       - start-mcp-server
@@ -37,6 +29,8 @@ services:
       - "9121"
       - --host
       - 0.0.0.0
+      - --project
+      - /workspaces/active-project
       - --context
       - claude-code
     restart: unless-stopped

@@ -16,14 +16,14 @@ This skill starts and stops the Serena MCP server locally with Docker Compose so
 ## Files
 
 - `compose.yaml`: Compose definition exposing Serena MCP on http://localhost:9121
-- `.env.example`: Example env file; copy to `.env` and set host workspace paths for bind mounts
+- `.env.example`: Example env file to initialize `.env` with `SERENA_PROJECT_PATH`
 - `serena-config.yml`: Serena Docker configuration mounted into the container
-- `start-serena.sh` / `start-serena.ps1`: Start Serena with `docker compose up -d`
+- `start-serena.sh` / `start-serena.ps1`: Read `SERENA_PROJECT_PATH` from `.env` and start Serena with `docker compose up -d`
 - `stop-serena.sh` / `stop-serena.ps1`: Stop and remove Serena with `docker compose down`
 
 ## Usage (agent or human)
 
-1) Copy `.env.example` to `.env` and set `WORKSPACE_1` and `WORKSPACE_2` to valid local paths.
+1) Copy `.env.example` to `.env` and set `SERENA_PROJECT_PATH` to the local project path Serena should activate.
 2) Start (PowerShell): `./start-serena.ps1`
 3) Start (Bash): `./start-serena.sh`
 4) Stop (PowerShell): `./stop-serena.ps1`
@@ -32,10 +32,11 @@ This skill starts and stops the Serena MCP server locally with Docker Compose so
 Append `-DryRun` (PowerShell) or `--dry-run` (Bash) to see the Compose command without running it.
 
 After starting, Serena MCP is available at http://localhost:9121.
+The selected project path is mounted into the container at `/workspaces/active-project` and activated automatically on startup using `serena start-mcp-server --project /workspaces/active-project`.
 
 ## Agent Instructions
 
-When the user asks to start Serena or to run a local Serena MCP server, ensure `.env` exists and points to real host workspace paths. The start scripts rely on Docker Compose's default `.env` loading. Run the start script from this folder, then share the MCP endpoint URL. Use the stop script to tear down the container when done.
+When the user asks to start Serena or to run a local Serena MCP server, ensure `.env` exists with `SERENA_PROJECT_PATH` set to the desired project path. Do not prompt at runtime; the start scripts read from `.env` and Serena auto-activates that project at startup via `--project`. Run the start script from this folder, then share the MCP endpoint URL. Use the stop script to tear down the container when done.
 
 ## References
 
