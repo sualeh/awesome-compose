@@ -1,0 +1,20 @@
+services:
+  ast-grep-mcp:
+    image: local/code-analysis-mcp-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ast-grep-mcp
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ${LOCAL_PROJECT_PATH}
+        target: /project
+        read_only: true
+    environment:
+      - PROJECT_PATH=/project
+    restart: unless-stopped

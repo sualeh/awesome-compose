@@ -7,7 +7,7 @@ if [[ ${1:-} == "--dry-run" ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-COMPOSE_FILE="$SCRIPT_DIR/compose.yaml"
+COMPOSE_FILE="$SCRIPT_DIR/compose.yml"
 ENV_FILE="$SCRIPT_DIR/.env"
 
 if [[ ! -f "$ENV_FILE" ]]; then
@@ -34,14 +34,11 @@ if [[ ! "$PROJECT_PATH" =~ ^[A-Za-z]:[\\/].* ]] && [[ ! -d "$PROJECT_PATH" ]]; t
 fi
 
 cd "$SCRIPT_DIR"
-CMD_PULL=(docker compose -f "$COMPOSE_FILE" pull)
-CMD_UP=(docker compose -f "$COMPOSE_FILE" up -d)
+CMD_UP=(docker compose -f "$COMPOSE_FILE" up -d --build)
 
 if (( DRY_RUN )); then
   printf "Dry run with LOCAL_PROJECT_PATH=%q\n" "$PROJECT_PATH"
   printf "Dry run: "
-  printf "%q " "${CMD_PULL[@]}"
-  printf " && "
   printf "%q " "${CMD_UP[@]}"
   printf "\n"
   exit 0
@@ -52,9 +49,7 @@ if ! command -v docker >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "Pulling latest Serena image with Docker Compose..."
-"${CMD_PULL[@]}"
-echo "Starting Serena MCP server with Docker Compose..."
+echo "Building and starting code-analysis MCP server with Docker Compose..."
 "${CMD_UP[@]}"
-echo "Activated project path: $PROJECT_PATH"
-echo "Serena MCP should be reachable at http://localhost:9121"
+echo "Mounted project path: $PROJECT_PATH"
+echo "Code-analysis MCP should be reachable at http://localhost:8000"
