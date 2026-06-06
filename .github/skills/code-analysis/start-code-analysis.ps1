@@ -4,7 +4,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$composePath = Join-Path $scriptDir "compose.yaml"
+$composePath = Join-Path $scriptDir "compose.yml"
 $envPath = Join-Path $scriptDir ".env"
 
 if (-not (Test-Path -Path $envPath -PathType Leaf)) {
@@ -41,12 +41,10 @@ if (-not (Test-Path -Path $projectPathFromEnv -PathType Container)) {
 
 $resolvedProjectPath = (Resolve-Path -Path $projectPathFromEnv).Path
 
-$pullCmd = "docker compose -f `"$composePath`" pull"
-$upCmd = "docker compose -f `"$composePath`" up -d"
+$upCmd = "docker compose -f `"$composePath`" up -d --build"
 
 if ($DryRun) {
   Write-Host "Dry run with LOCAL_PROJECT_PATH=`"$resolvedProjectPath`""
-  Write-Host "Dry run: $pullCmd"
   Write-Host "Dry run: $upCmd"
   return
 }
@@ -57,12 +55,13 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 
 Push-Location $scriptDir
 try {
-  Write-Host "Pulling latest Serena image with Docker Compose..."
-  & docker compose -f $composePath pull
-  Write-Host "Starting Serena MCP server with Docker Compose..."
-  & docker compose -f $composePath up -d
-  Write-Host "Activated project path: $resolvedProjectPath"
-  Write-Host "Serena MCP should be reachable at http://localhost:9121"
+  Write-Host "Building and starting code-analysis MCP server with Docker Compose..."
+  & docker compose -f $composePath up -d --build
+  if ($LASTEXITCODE -ne 0) {
+    throw "docker compose up failed with exit code $LASTEXITCODE"
+  }
+  Write-Host "Mounted project path: $resolvedProjectPath"
+  Write-Host "Code-analysis MCP should be reachable at http://localhost:8000"
 }
 finally {
   Pop-Location

@@ -38,6 +38,7 @@ Agent-triggered utilities live under `.github/skills/` and provide start/stop he
 - Vert: [.github/skills/vert](.github/skills/vert) — start with `./start-vert.sh` or `./start-vert.ps1`
 - Orthanc: [.github/skills/orthanc](.github/skills/orthanc) — start with `./start-orthanc.sh` or `./start-orthanc.ps1`
 - Serena MCP: [.github/skills/serena](.github/skills/serena) — start with `./start-serena.sh` or `./start-serena.ps1`
+- Code Analysis MCP: [.github/skills/code-analysis](.github/skills/code-analysis) — start with `./start-code-analysis.sh` or `./start-code-analysis.ps1`
 
 
 ## References

@@ -1,0 +1,75 @@
+name: anythingllm
+
+networks:
+  anythingllm-net:
+    driver: bridge
+
+volumes:
+  ollama_data:
+  anythingllm_storage:
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: anythingllm-ollama
+    restart: unless-stopped
+    networks:
+      - anythingllm-net
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # One-shot helper that pulls default models on first 'up', then exits.
+  # Subsequent 'up's are no-ops since models live in ollama_data.
+  model-puller:
+    image: ollama/ollama:latest
+    container_name: anythingllm-model-puller
+    networks:
+      - anythingllm-net
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "ollama pull nomic-embed-text && ollama pull llama3.2:3b"
+    restart: "no"
+
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: anythingllm
+    restart: unless-stopped
+    networks:
+      - anythingllm-net
+    ports:
+      - "3001:3001"
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - anythingllm_storage:/app/server/storage
+    environment:
+      - STORAGE_DIR=/app/server/storage
+      - DISABLE_TELEMETRY=true
+      - JWT_SECRET=${JWT_SECRET}
+      - LLM_PROVIDER=ollama
+      - OLLAMA_BASE_PATH=http://ollama:11434
+      - OLLAMA_MODEL_PREF=llama3.2:3b
+      - OLLAMA_MODEL_TOKEN_LIMIT=4096
+      - EMBEDDING_ENGINE=ollama
+      - EMBEDDING_BASE_PATH=http://ollama:11434
+      - EMBEDDING_MODEL_PREF=nomic-embed-text:latest
+      - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
+      - VECTOR_DB=lancedb
+      - WHISPER_PROVIDER=local
+      - TTS_PROVIDER=native
